@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings_1.c                                     :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 15:07:19 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/17 15:39:52 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/17 14:38:41 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/17 14:39:57 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
 
-size_t	ft_strlen(const char *s)
+/* Checks if a character is uppercase (ASCII standard set) */
+int	ft_isupper(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i); 
+	return (c >= 'A' && c <= 'Z');
 }

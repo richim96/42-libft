@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_case_change.c                                   :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:55:28 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/17 15:00:49 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/17 14:14:59 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/17 14:17:07 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Converts a character to uppercase, if possible */
-int	ft_toupper(int c)
-{
-	if (c >= 'a' && <= 'z')
-		c -= 32;
-	return (c);
-}
+#include "libft.h"
 
-/* Converts a character to lowercase, if possible */
-int	ft_tolower(int c)
+/* Checks if a character is either alphabetic (ASCII standard set) or numeric */
+int	ft_isalnum(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 32;
-	return (c);
+	return (ft_alpha(c) || ft_isdigit(c));
 }

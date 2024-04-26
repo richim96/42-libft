@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:34:20 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/25 15:11:34 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/26 18:31:09 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
  * area pointed by s. Returns a pointer to the matching byte or NULL. */
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (n)
+	while (n--)
 	{
 		if (*(unsigned char *)s == (unsigned char)c)
 			return ((void *)s);
 		s++;
-		n--;
 	}
 	return (NULL);
 }

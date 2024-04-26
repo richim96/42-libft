@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:16:06 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 12:31:59 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/26 17:54:27 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s)
 	char	*dup;
 
 	s_len = ft_strlen(s);
-	dup = (char *)malloc((s_len + 1) * sizeof(char));
+	dup = (char *) malloc((s_len + 1) * sizeof(char));
 	if (!dup)
 	{
 		errno = ENOMEM;

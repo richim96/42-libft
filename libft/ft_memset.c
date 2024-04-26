@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:38:34 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/25 13:14:01 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/26 18:35:01 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ void	*ft_memset(void *s, int c, size_t n)
 	unsigned char	*ptr;
 
 	ptr = s;
-	while (n)
+	while (n--)
 	{
 		*ptr = (unsigned char)c;
 		ptr++;
-		n--;
 	}
 	return (s);
 }

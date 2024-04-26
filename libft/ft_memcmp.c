@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:14:43 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/25 15:23:50 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/26 18:32:49 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@
  * Returns the difference of the comparison as an int. */
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	while (n)
+	while (n--)
 	{
 		if (*(unsigned char *)s1 != *(unsigned char *)s2)
 			return (*(unsigned char *)s1 - *(unsigned char *)s2);
 		s1++;
 		s2++;
-		n--;
 	}
 	return (0);
 }

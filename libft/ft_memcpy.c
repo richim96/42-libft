@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:33:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/25 13:13:15 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/26 16:44:41 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
+	if (!src && !dest)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{

@@ -6,36 +6,28 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:07:41 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/25 14:58:17 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/26 16:38:07 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <string.h>
 
-/* Copies n bytes to memory area dest from memory area src. Memory can overlap:
- * the bytes from src are first copied in a temporary, non-overlapping array,
- * then the bytes are copied to dest. Returns a pointer to dest. */
+/* Copies n bytes from memory area src to memory area dest. Memory can overlap.
+ * Returns a pointer to dest. */
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t			i;
-	unsigned char	*temp_arr;
+	const unsigned char	*ptr_src;
+	unsigned char		*ptr_dest;
 
-	temp_arr = (unsigned char *)malloc(n * sizeof(unsigned char));
-	if (!temp_arr)
+	if (!src && !dest)
 		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		temp_arr[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dest)[i] = temp_arr[i];
-		i++;
-	}
-	free(temp_arr);
+	ptr_src = src;
+	ptr_dest = dest;
+	if (ptr_src < ptr_dest && ptr_src + n > ptr_dest)
+		while (n--)
+			ptr_dest[n] = ptr_src[n];
+	else
+		while (n--)
+			*ptr_dest++ = *ptr_src++;
 	return (dest);
 }

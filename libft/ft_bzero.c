@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:14:59 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/23 16:34:08 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/25 12:21:40 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/25 12:27:27 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/* Checks if a character is either alphabetic (ASCII standard set) or numeric */
-int	ft_isalnum(int c)
+/* Erases data by setting n bytes of data at memory location s to zero ('\0') */
+void	ft_bzero(void *s, size_t n)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (n)
+	{
+		*ptr = '\0';
+		ptr++;
+		n--;
+	}
 }

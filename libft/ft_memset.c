@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:14:59 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/23 16:34:08 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/25 11:38:34 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/25 13:14:01 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/* Checks if a character is either alphabetic (ASCII standard set) or numeric */
-int	ft_isalnum(int c)
+/* Fills the first n bytes of the memory area pointed to by s with the constant
+ * byte c. Returns a pointer to the memory area s. */
+void	*ft_memset(void *s, int c, size_t n)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (n)
+	{
+		*ptr = (unsigned char)c;
+		ptr++;
+		n--;
+	}
+	return (s);
 }

@@ -1,21 +1,43 @@
-SRC
-OBJS	= ${SRC:.c=.o}
-HEAD
-NAME	= libft
-CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -g
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
+#    Updated: 2024/04/26 12:21:39 by rmei             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-%.o:	%.c
-	%{CC} ${CFLAGS} -c $< -o $@
+#### -- VARIABLES -- ####
+SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero isalnum isalpha isascii isdigit isprint memchr memcmp memcpy memmove memset strchr strdup strlcat strlcpy strlen strncmp strnstr strrchr tolower toupper))
 
-${NAME}:	${OBJS}
-	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+OBJS := ${SRC:%.c=%.o}
 
-all:
-	${NAME}
+NAME = libft.a
+
+CPPFLAGS = -I/.
+
+CCFLAGS = -Wall -Wextra -Werror -g
+
+#### -- RULES -- ####
+all: ${NAME}
+
+# create archive
+${NAME}: ${OBJS}
+	 @ar rcs $@ $^
+
+# create object files
+%.o: %.c
+	@cc ${CPPFLAGS} ${CCFLAGS} -o $@ -c $<
+
+# remove object files
 clean:
-	rm -f ${OBJS}
-fclean:
-	rm -f ${NAME}
-re:
-	fclean all
+	@rm -f ${OBJS}
+
+# remove object files and archive
+fclean: clean
+	@rm -f ${NAME}
+
+re: fclean all

@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:14:59 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/23 16:34:08 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/25 15:28:18 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/25 15:41:16 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/* Checks if a character is either alphabetic (ASCII standard set) or numeric */
-int	ft_isalnum(int c)
+/* Returns a pointer to the first occurence of c in s, or NULL. If c is '\0',
+ * it returns a pointer to the null terminator. */
+char	*ft_strchr(const char *s, int c)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	char	*ptr_s;
+
+	ptr_s = (char *)s;
+	while (*ptr_s)
+	{
+		if (*ptr_s == (char)c)
+			return (ptr_s);
+		ptr_s++;
+	}
+	if ((char)c == '\0')
+		return (ptr_s);
+	return (NULL);
 }

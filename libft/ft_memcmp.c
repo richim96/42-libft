@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:14:59 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/23 16:34:08 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/25 15:14:43 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/25 15:23:50 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/* Checks if a character is either alphabetic (ASCII standard set) or numeric */
-int	ft_isalnum(int c)
+/* Compares the first n bytes (as unsigned char) of two memory areas s1 and s2.
+ * Returns the difference of the comparison as an int. */
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	while (n)
+	{
+		if (*(unsigned char *)s1 != *(unsigned char *)s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+		n--;
+	}
+	return (0);
 }

@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:14:59 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/23 16:34:08 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/26 12:16:06 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/26 12:31:59 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
+#include <stdlib.h>
 #include "libft.h"
 
-/* Checks if a character is either alphabetic (ASCII standard set) or numeric */
-int	ft_isalnum(int c)
+/* Duplicates string s and returns a pointer to the new string (NULL on fail) */
+char	*ft_strdup(const char *s)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	int		i;
+	int		s_len;
+	char	*dup;
+
+	s_len = ft_strlen(s);
+	dup = (char *)malloc((s_len + 1) * sizeof(char));
+	if (!dup)
+	{
+		errno = ENOMEM;
+		return (NULL);
+	}
+	i = 0;
+	while (i < s_len)
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

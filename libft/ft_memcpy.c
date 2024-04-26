@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_islower.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:30:27 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/17 14:32:48 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/25 12:33:40 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/25 13:13:15 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Checks if a character is lowercase (ASCII standard set) */
-int	ft_islower(int c)
+#include <string.h>
+
+/* Copies n bytes from memory area src to a not-overlapping memory area dest.
+ * Returns a pointer to dest. In case of memory overlaps, use 'memmove'. */
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	return (c >= 'a' && c <= 'z');
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
 }

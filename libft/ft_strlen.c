@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_boolean_checks.c                                :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:07:19 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/17 14:19:52 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/25 15:50:06 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <string.h>
 
-/* Counts the length of a given string, excluding the null terminator */
+/* Counts the length of a given string, excluding the null terminator '\0' */
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;

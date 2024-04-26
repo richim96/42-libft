@@ -6,12 +6,12 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:17:30 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/17 14:20:12 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/24 14:33:24 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Checks if a character exists in the ASCII standard set */
-int	ft_iascii(int c)
+/* Checks if a character exists in the standard ASCII set */
+int	ft_isascii(int c)
 {
 	return (c >= 0 && c <= 127);
 }

@@ -1,17 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isupper.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:38:41 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/17 14:39:57 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/25 13:34:20 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/25 15:11:34 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Checks if a character is uppercase (ASCII standard set) */
-int	ft_isupper(int c)
+#include <string.h>
+
+/* Looks for the first instance of a byte c in the first n bytes of the memory
+ * area pointed by s. Returns a pointer to the matching byte or NULL. */
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	return (c >= 'A' && c <= 'Z');
+	while (n)
+	{
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((void *)s);
+		s++;
+		n--;
+	}
+	return (NULL);
 }

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 12:21:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 18:29:54 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/27 13:42:44 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/27 14:13:33 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-/* Erases data by setting n bytes of data at memory location s to zero ('\0') */
-void	ft_bzero(void *s, size_t n)
+/* Creates a substring from a given string, copying from to start up to len.
+ * Return a pointer to the new string, or NULL if the allocation fails. */
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned char	*ptr;
 
-	ptr = s;
-	while (n--)
-		*ptr++ = '\0';
 }

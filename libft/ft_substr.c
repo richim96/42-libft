@@ -6,10 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:42:44 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/29 20:10:54 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/30 11:34:31 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 /* Creates a substring from a given string, copying from to start up to len.
@@ -29,7 +30,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	else if (len + start > s_len)
 		len = s_len - start;
 	buffer_size = len + 1;
-	substring = ft_calloc(buffer_size, sizeof(char));
+	substring = (char *) malloc(buffer_size * sizeof(char));
 	if (!substring)
 		return (NULL);
 	ft_strlcpy(substring, s + start, buffer_size);

@@ -6,12 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:20:21 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 11:54:21 by rmei             ###   ########.fr       */
+/*   Updated: 2024/04/30 15:51:20 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <errno.h>
 #include "libft.h"
 
 /* Allocates memory (set to 0) for an array with *n members* of *size* bytes.
@@ -23,17 +22,16 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	mem_req;
 	void	*array;
 
-	if (!nmemb || !size)
-		return ((void *) malloc(sizeof(void)));
 	mem_req = nmemb * size;
 	if (mem_req < nmemb || mem_req < size)
 		return (NULL);
-	array = (void *) malloc(mem_req * sizeof(void));
+	if (!nmemb || !size)
+		array = (void *) malloc(sizeof(void));
+	else
+		array = (void *) malloc(mem_req * sizeof(void));
 	if (!array)
-	{
-		errno = ENOMEM;
 		return (NULL);
-	}
-	ft_memset(array, 0, mem_req);
+	if (mem_req)
+		ft_memset(array, 0, mem_req);
 	return (array);
 }

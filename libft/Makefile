@@ -6,12 +6,12 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/04/27 14:01:20 by rmei             ###   ########.fr        #
+#    Updated: 2024/04/30 17:47:55 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero calloc isalnum isalpha isascii isdigit isprint memchr memcmp memcpy memmove memset substr strchr strdup strlcat strlcpy strlen strncmp strnstr strrchr tolower toupper))
+SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero calloc isalnum isalpha isascii isdigit isprint memchr memcmp memcpy memmove memset split substr strchr strdup strjoin strlcat strlcpy strlen strncmp strnstr strrchr strtrim tolower toupper))
 
 OBJS := ${SRC:%.c=%.o}
 

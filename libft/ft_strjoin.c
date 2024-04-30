@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 11:38:34 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 15:38:27 by rmei             ###   ########.fr       */
+/*   Created: 2024/04/30 11:58:17 by rmei              #+#    #+#             */
+/*   Updated: 2024/04/30 16:57:23 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-/* Fills the first n bytes of the memory area pointed to by s with the constant
- * byte c. Returns a pointer to the memory area s. */
-void	*ft_memset(void *s, int c, size_t n)
+/* Joins strings s1 and s2 into a new string and returns it, or NULL on fail */
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*ptr;
+	size_t	buffer_size;
+	char	*s3;
 
-	ptr = s;
-	while (n--)
-		*(ptr++) = (unsigned char)c;
-	return (s);
+	buffer_size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	s3 = (char *) malloc(buffer_size * sizeof(char));
+	if (!s3)
+		return (NULL);
+	ft_strlcpy(s3, s1, buffer_size);
+	ft_strlcat(s3, s2, buffer_size);
+	return (s3);
 }

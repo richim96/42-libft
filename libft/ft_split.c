@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:20 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 17:52:42 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/02 17:39:55 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 #include "libft.h"
 
 /* Counts how many strings will result from the split of s by the delimeter c */
-static int	ft_strcount(char const *s, char c)
+static int	ft_substr_count(char const *s, char c)
 {
 	int	count;
 
-	count = 1;
-	// Edit code here: gotta move pointer as long as the delimeter is met first!
-	// Then add to count.
+	count = 0;
 	while (*s)
-		if (c == *(s++))
+	{
+		while (*s && *s == c)
+			s++;
+		if (*s && *s != c)
 			count++;
+		while (*s && *s != c)
+			s++;
+	}
 	return (count);
 }
 
 /* Counts the length of the substring at 's' until delimeter 'c' is met */
-static int	ft_substrlen(char const *s, char c)
+static int	ft_substr_len(char const *s, char c)
 {
 	int	len;
 
@@ -38,40 +42,43 @@ static int	ft_substrlen(char const *s, char c)
 	return (len);
 }
 
-/* Frees memory from 2D array */
-static void	ft_arrayfree(char **array)
+/* If a nested allocation fails, frees memory allocated to an array of ptrs */
+static void	ft_ptr_array_free(char **ptr_array, char **array)
 {
-	while (*array)
-		free(*(array++));
-	free((array));
+	if (*ptr_array)
+		return ;
+	while (ptr_array != array)
+		free(*(ptr_array--));
+	free(*ptr_array);
+	free(array);
 }
 
 /* Returns an array of strings, splitting 's' by the delimeter 'c', or NULL */
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
-	int		array_buffer;
-	int		substr_buffer;
-	int		i;
+	char	**ptr_array;
+	int		substr_len;
 
-	array_buffer = ft_strcount(s, c) + 1;
-	array = (char **) malloc(array_buffer * sizeof(char *));
+	array = (char **) malloc((ft_substr_count(s, c) + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
-	i = 0;
-	while (array[i])
+	ptr_array = array;
+	while (*s)
 	{
-		substr_buffer = ft_substrlen(s, c) + 1;
-		array[i] = (char *) malloc(substr_buffer * sizeof(char));
-		ft_strlcpy(array[i], s, substr_buffer);
-		if (!array[i])
-		{
-			ft_arrayfree(array);
+		while (*s == c)
+			s++;
+		substr_len = ft_substr_len(s, c);
+		if (!substr_len)
+			break ;
+		*ptr_array = (char *) malloc((substr_len + 1) * sizeof(char));
+		ft_ptr_array_free(ptr_array, array);
+		if (!*ptr_array)
 			return (NULL);
-		}
-		s += substr_buffer;
-		i++;
+		ft_strlcpy(*ptr_array, s, substr_len + 1);
+		ptr_array++;
+		s += substr_len;
 	}
-	array[i] = (void *)0;
+	*ptr_array = (void *)0;
 	return (array);
 }

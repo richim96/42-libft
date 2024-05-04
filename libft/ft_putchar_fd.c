@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 15:07:19 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/03 12:00:42 by rmei             ###   ########.fr       */
+/*   Created: 2024/05/03 15:13:57 by rmei              #+#    #+#             */
+/*   Updated: 2024/05/03 15:17:56 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <unistd.h>
 
-/* Counts the length of a given string, excluding the null terminator '\0' */
-size_t	ft_strlen(const char *s)
+/* Outputs the character 'c' to the file descriptor 'fd' */
+void	ft_putchar_fd(char c, int fd)
 {
-	if (!*s)
-		return (0);
-	return (1 + ft_strlen(++s));
+	write(fd, &c, 1);
 }

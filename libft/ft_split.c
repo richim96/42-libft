@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:20 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/02 17:39:55 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/03 16:19:40 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,29 @@ static int	ft_substr_len(char const *s, char c)
 }
 
 /* If a nested allocation fails, frees memory allocated to an array of ptrs */
-static void	ft_ptr_array_free(char **ptr_array, char **array)
+static void	*ft_ptr_tab_free(char **ptr_tab, char **tab)
 {
-	if (*ptr_array)
-		return ;
-	while (ptr_array != array)
-		free(*(ptr_array--));
-	free(*ptr_array);
-	free(array);
+	while (ptr_tab != tab)
+	{
+		free(*ptr_tab);
+		ptr_tab--;
+	}
+	free(*ptr_tab);
+	free(ptr_tab);
+	return (NULL);
 }
 
 /* Returns an array of strings, splitting 's' by the delimeter 'c', or NULL */
 char	**ft_split(char const *s, char c)
 {
-	char	**array;
-	char	**ptr_array;
+	char	**tab;
+	char	**ptr_tab;
 	int		substr_len;
 
-	array = (char **) malloc((ft_substr_count(s, c) + 1) * sizeof(char *));
-	if (!array)
+	tab = (char **) malloc((ft_substr_count(s, c) + 1) * sizeof(char *));
+	if (!tab)
 		return (NULL);
-	ptr_array = array;
+	ptr_tab = tab;
 	while (*s)
 	{
 		while (*s == c)
@@ -71,14 +73,13 @@ char	**ft_split(char const *s, char c)
 		substr_len = ft_substr_len(s, c);
 		if (!substr_len)
 			break ;
-		*ptr_array = (char *) malloc((substr_len + 1) * sizeof(char));
-		ft_ptr_array_free(ptr_array, array);
-		if (!*ptr_array)
-			return (NULL);
-		ft_strlcpy(*ptr_array, s, substr_len + 1);
-		ptr_array++;
+		*ptr_tab = (char *) malloc((substr_len + 1) * sizeof(char));
+		if (!*ptr_tab)
+			return (ft_ptr_tab_free(ptr_tab, tab));
+		ft_strlcpy(*ptr_tab, s, substr_len + 1);
+		ptr_tab++;
 		s += substr_len;
 	}
-	*ptr_array = (void *)0;
-	return (array);
+	*ptr_tab = (void *)0;
+	return (tab);
 }

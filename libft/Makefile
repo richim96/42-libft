@@ -6,20 +6,24 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/04/30 17:47:55 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/04 19:06:25 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero calloc isalnum isalpha isascii isdigit isprint memchr memcmp memcpy memmove memset split substr strchr strdup strjoin strlcat strlcpy strlen strncmp strnstr strrchr strtrim tolower toupper))
+SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero calloc isalnum isalpha isascii isdigit isprint itoa memchr memcmp memcpy memmove memset putchar_fd putendl_fd putnbr_fd putstr_fd split substr strchr strdup striteri strjoin strlcat strlcpy strlen strmapi strncmp strnstr strrchr strtrim tolower toupper))
 
-OBJS := ${SRC:%.c=%.o}
+OBJS = ${SRC:%.c=%.o}
+
+SRC_BONUS = $(addsuffix _bonus.c, $(addprefix ft_, lstnew))
+
+OBJS_BONUS = $(SRC_BONUS:%.c=%.o)
 
 NAME = libft.a
 
-CPPFLAGS = -I/.
+CPPFLAGS = -I.
 
-CCFLAGS = -Wall -Wextra -Werror -g
+CCFLAGS = -Wall -Wextra -Werror
 
 #### -- RULES -- ####
 all: ${NAME}
@@ -28,15 +32,21 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	 @ar rcs $@ $^
 
-# create object files
-%.o: %.c
+$(OBJS): %.o: %.c
 	@cc ${CPPFLAGS} ${CCFLAGS} -o $@ -c $<
 
-# remove object files
-clean:
-	@rm -f ${OBJS}
+# update archive with bonus
+bonus: $(OBJS_BONUS)
+	@ar rcs $(NAME) $^
 
-# remove object files and archive
+$(OBJS_BONUS): %.o: %.c
+	@cc $(CPPFLAGS) $(CCFLAGS) -o $@ -c $<
+
+# remove all object files
+clean:
+	@rm -f ${OBJS} $(OBJS_BONUS)
+
+# remove all object files and the archive
 fclean: clean
 	@rm -f ${NAME}
 

@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 18:40:02 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/04 20:22:17 by rmei             ###   ########.fr       */
+/*   Created: 2024/05/04 20:25:43 by rmei              #+#    #+#             */
+/*   Updated: 2024/05/04 20:27:15 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*node;
-
-	node = (t_list *) malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = (void *)0;
-	return (node);
-}
+/* Adds the node 'new' to the beginning of 'lst' */
+void	ft_lstadd_front(t_list **lst, t_list *new);

@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:45:52 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/04 18:19:16 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/04 20:28:56 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ typedef struct s_list
 }	t_list;
 
 extern t_list	*ft_lstnew(void *content);
+extern void		ft_lstadd_front(t_list **lst, t_list *new);
 
 #endif

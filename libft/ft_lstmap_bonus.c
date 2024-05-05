@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 18:40:02 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/05 19:52:51 by rmei             ###   ########.fr       */
+/*   Created: 2024/05/05 17:35:48 by rmei              #+#    #+#             */
+/*   Updated: 2024/05/05 20:29:02 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-/* Creates a new node for a singly-linked list */
-t_list	*ft_lstnew(void *content)
+/* Iterates a singly-linked list and applies 'f' on the content of each node.
+ * Returns a new singly-linked list with the result, or NULL. */
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list	*lst2;
 	t_list	*node;
 
-	node = (t_list *) malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	lst2 = NULL;
+	while (lst)
+	{
+		node = ft_lstnew((*f)(lst->content));
+		if (!node)
+		{
+			ft_lstclear(&lst2, del);
+			break ;
+		}
+		ft_lstadd_back(&lst2, node);
+		lst = lst->next;
+	}
+	return (lst2);
 }

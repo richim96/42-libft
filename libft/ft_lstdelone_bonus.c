@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 18:40:02 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/05 19:52:51 by rmei             ###   ########.fr       */
+/*   Created: 2024/05/05 13:59:46 by rmei              #+#    #+#             */
+/*   Updated: 2024/05/05 20:37:52 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-/* Creates a new node for a singly-linked list */
-t_list	*ft_lstnew(void *content)
+/* Frees the memory on a node's content using the function given as argument,
+ * then frees the memory of the node. It does not free the memory of 'next'. */
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	t_list	*node;
-
-	node = (t_list *) malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	(*del)(lst->content);
+	free(lst);
 }

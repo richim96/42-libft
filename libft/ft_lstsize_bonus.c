@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 18:40:02 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/05 19:52:51 by rmei             ###   ########.fr       */
+/*   Created: 2024/05/05 12:55:33 by rmei              #+#    #+#             */
+/*   Updated: 2024/05/05 13:03:52 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-/* Creates a new node for a singly-linked list */
-t_list	*ft_lstnew(void *content)
+/* Counts the number of nodes in a singly-linked list */
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*node;
+	int	lsize;
 
-	node = (t_list *) malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	lsize = 0;
+	while (lst)
+	{
+		lsize++;
+		lst = lst->next;
+	}
+	return (lsize);
 }

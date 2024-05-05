@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:45:52 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/04 20:28:56 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/05 18:24:54 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,14 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-extern t_list	*ft_lstnew(void *content);
+extern int		ft_lstsize(t_list *lst);
+extern void		ft_lstadd_back(t_list **lst, t_list *new);
 extern void		ft_lstadd_front(t_list **lst, t_list *new);
+extern void		ft_lstclear(t_list **lst, void (*del)(void *));
+extern void		ft_lstdelone(t_list *lst, void (*del)(void *));
+extern void		ft_lstiter(t_list *lst, void (*f)(void *));
+extern t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void*));
+extern t_list	*ft_lstnew(void *content);
+extern t_list	*ft_lstlast(t_list *lst);
 
 #endif

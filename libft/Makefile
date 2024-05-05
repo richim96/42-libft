@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/04 20:27:35 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/05 18:22:15 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero calloc isalnum isalpha isascii
 
 OBJS = ${SRC:%.c=%.o}
 
-SRC_BONUS = $(addsuffix _bonus.c, $(addprefix ft_, lstadd_front lstnew))
+SRC_BONUS = $(addsuffix _bonus.c, $(addprefix ft_, lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap lstnew lstsize))
 
 OBJS_BONUS = $(SRC_BONUS:%.c=%.o)
 

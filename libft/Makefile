@@ -6,23 +6,27 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/05 18:22:15 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/06 20:41:05 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = $(addsuffix .c, $(addprefix ft_, atoi bzero calloc isalnum isalpha isascii isdigit isprint itoa memchr memcmp memcpy memmove memset putchar_fd putendl_fd putnbr_fd putstr_fd split substr strchr strdup striteri strjoin strlcat strlcpy strlen strmapi strncmp strnstr strrchr strtrim tolower toupper))
 
+SRC = atoi bzero calloc isalnum isalpha isascii isdigit isprint itoa memchr \
+	memcmp memcpy memmove memset putchar_fd putendl_fd putnbr_fd putstr_fd \
+	split substr strchr strdup striteri strjoin strlcat strlcpy strlen strmapi \
+	strncmp strnstr strrchr strtrim tolower toupper
+SRC := $(addsuffix .c, $(addprefix ft_, $(SRC)))
 OBJS = ${SRC:%.c=%.o}
 
-SRC_BONUS = $(addsuffix _bonus.c, $(addprefix ft_, lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap lstnew lstsize))
-
+SRC_BONUS = lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap \
+			lstnew lstsize
+SRC_BONUS := $(addsuffix _bonus.c, $(addprefix ft_, $(SRC_BONUS)))
 OBJS_BONUS = $(SRC_BONUS:%.c=%.o)
 
 NAME = libft.a
 
 CPPFLAGS = -I.
-
 CCFLAGS = -Wall -Wextra -Werror
 
 #### -- RULES -- ####
@@ -32,15 +36,12 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	 @ar rcs $@ $^
 
-$(OBJS): %.o: %.c
+%.o: %.c
 	@cc ${CPPFLAGS} ${CCFLAGS} -o $@ -c $<
 
 # update archive with bonus
 bonus: $(OBJS_BONUS)
 	@ar rcs $(NAME) $^
-
-$(OBJS_BONUS): %.o: %.c
-	@cc $(CPPFLAGS) $(CCFLAGS) -o $@ -c $<
 
 # remove all object files
 clean:

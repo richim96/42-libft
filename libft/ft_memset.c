@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:38:34 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 15:38:27 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/08 11:14:04 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
  * byte c. Returns a pointer to the memory area s. */
 void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char	*ptr;
+	size_t	i;
 
-	ptr = s;
-	while (n--)
-		*(ptr++) = (unsigned char)c;
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = (unsigned char)c;
 	return (s);
 }

@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/10 12:56:05 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/10 16:36:24 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,21 +33,21 @@ all: ${NAME}
 
 # create archive
 ${NAME}: ${OBJS}
-	 @ar rcs $@ $^
+	 ar -rcs $@ $^
 
 %.o: %.c
-	@cc ${CPPFLAGS} ${CFLAGS} -o $@ -c $<
+	cc ${CPPFLAGS} ${CFLAGS} -o $@ -c $<
 
 # update archive with bonus
 bonus: ${OBJS_BONUS}
-	@ar rcs ${NAME} $^
+	ar -rcs ${NAME} $^
 
 # remove all object files
 clean:
-	@rm -f ${OBJS} ${OBJS_BONUS}
+	rm -f ${OBJS} ${OBJS_BONUS}
 
 # remove all object files and the archive
 fclean: clean
-	@rm -f ${NAME}
+	rm -f ${NAME}
 
 re: fclean all

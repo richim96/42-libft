@@ -6,13 +6,13 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:44:22 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 18:27:43 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/10 11:50:12 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Converts to int the initial portion of a string. The string can begin with an
- * arbitrary amount of white spaces (isspace(3)), followed by a single, optional
- * sign('+' or '-'). Returns the converted value, or 0 on error. */
+/* Converts to int the initial portion of a string. The string can begin with
+ * an arbitrary amount of white spaces (isspace(3)), followed by a single,
+ * optional sign('+' or '-'). Returns the converted value, or 0 on error. */
 int	ft_atoi(const char *nptr)
 {
 	int	result;

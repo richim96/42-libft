@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:20:21 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/08 11:13:10 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/10 11:58:59 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Allocates memory (set to 0) for a group of *n members* of *size* bytes.
  * Returns a ptr to the allocated memory. If the memory required would cause
- * overflow, 'nmemb' or 'size' is 0, or memory allocation fails, returns NULL */
+ * overflow, nmemb or size is 0, or memory allocation fails, returns NULL */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	size_max;

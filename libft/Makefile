@@ -6,12 +6,11 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/10 11:26:46 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/10 12:17:08 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-
 SRC = atoi bzero calloc isalnum isalpha isascii isdigit isprint itoa memchr \
 	memcmp memcpy memmove memset putchar_fd putendl_fd putnbr_fd putstr_fd \
 	split substr strchr strdup striteri strjoin strlcat strlcpy strlen strmapi \

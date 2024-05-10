@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/06 20:41:05 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/10 11:27:20 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS_BONUS = $(SRC_BONUS:%.c=%.o)
 NAME = libft.a
 
 CPPFLAGS = -I.
-CCFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 #### -- RULES -- ####
 all: ${NAME}
@@ -37,7 +37,7 @@ ${NAME}: ${OBJS}
 	 @ar rcs $@ $^
 
 %.o: %.c
-	@cc ${CPPFLAGS} ${CCFLAGS} -o $@ -c $<
+	@cc ${CPPFLAGS} ${CFLAGS} -o $@ -c $<
 
 # update archive with bonus
 bonus: $(OBJS_BONUS)

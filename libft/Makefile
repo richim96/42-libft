@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/10 17:50:55 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/13 13:00:55 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 SRC = atoi bzero calloc isalnum isalpha isascii isdigit isprint itoa lstnew \
 	lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap lstsize \
 	memchr memcmp memcpy memmove memset putchar_fd putendl_fd putnbr_fd \
-	putstr_fd split substr strchr strdup striteri strjoin strlcat strlcpy \
-	strlen strmapi strncmp strnstr strrchr strtrim tolower toupper
+	putnbr_base_fd putstr_fd split substr strchr strdup striteri strjoin strlcat \
+	strlcpy strlen strmapi strncmp strnstr strrchr strtrim tolower toupper
 SRC := $(addsuffix .c, $(addprefix ft_, ${SRC}))
 
 OBJS = ${SRC:%.c=%.o}
@@ -33,7 +33,7 @@ ${NAME}: ${OBJS}
 	 ar -rcs $@ $^
 
 %.o: %.c
-	cc ${CPPFLAGS} ${CFLAGS} -o $@ -c $<
+	cc ${CPPFLAGS} ${CFLAGS} -c -o $@ $<
 
 # remove all object files
 clean:

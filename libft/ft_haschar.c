@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_haschar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 15:13:57 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/17 11:20:47 by rmei             ###   ########.fr       */
+/*   Created: 2024/05/13 16:05:32 by rmei              #+#    #+#             */
+/*   Updated: 2024/05/13 16:16:46 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-/* Outputs the character 'c' to the file descriptor 'fd', returns 1 */
-int	ft_putchar_fd(char c, int fd)
+/* Returns 1 if the char 'c' is found in string 's', 0 if not */
+int	ft_haschar(char *s, char c)
 {
-	write(fd, &c, 1);
-	return (1);
+	while (*s)
+	{
+		if (*s == c)
+			return (1);
+		s++;
+	}
+	return (0);
 }

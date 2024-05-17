@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:28:04 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/16 17:33:30 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/17 13:00:39 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,25 @@
 //static void	ft_set_flags(char *s);
 //static char	*ft_print_flags(char *s, char *s_var);
 
-/* Prints to screen the current variable */
-static void ft_print_arg(const char *fmt, va_list args)
+/* Prints to screen the current variable, returns the n_chars printed */
+static int ft_print_arg(const char *fmt, va_list args)
 {
 	char	*var;
-	
+
 	if (*fmt == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
+		return (ft_putchar_fd(va_arg(args, int), 1));
 	else if (*fmt == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return (ft_putstr_fd(va_arg(args, char *), 1));
 	else if (*fmt == 'd' || *fmt == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		return (ft_putnbr_fd(va_arg(args, int), 1));
+	else if (*fmt == 'u')
+		return (ft_putnbr_fd(va_arg(args, unsigned int), 1));
 	else if (*fmt == 'x')
-		ft_putnbr_base_fd(va_arg(args, int), 1, "0123456789abcdef");
+		return (ft_putnbr_base_fd(va_arg(args, unsigned int), 1, "0123456789abcdef"));
 	else if (*fmt == 'X')
-		ft_putnbr_base_fd(va_arg(args, int), 1, "0123456789ABCDEF");
+		return (ft_putnbr_base_fd(va_arg(args, unsigned int), 1, "0123456789ABCDEF"));
 	else
-		ft_putchar_fd(*fmt, 1);
+		return (ft_putchar_fd(*fmt, 1));
 }
 
 //static char	*ft_ptr_shift(char *s);
@@ -66,16 +68,20 @@ int	ft_printf(const char *fmt, ...)
 		if (!*fmt)
 			break ;
 		fmt++;
-		ft_print_arg(fmt, args);
+		n_chars += ft_print_arg(fmt, args);
 		fmt++;
 	}
 	va_end(args);
+	printf("My chars: %d\n", n_chars);
 	return (n_chars);
 }
 
 int	main(void)
 {
-	ft_printf("Hello %% %c %c dear, %i%d, %x %X \n", 'm', 'y', 10, 11, 1000, 1200);
-	printf("Hello %% %c %c dear, %i%d, %x %X\n", 'm', 'y', 10, 11, 1000, 1200);
+	int	chars;
+
+	ft_printf("Hello, %d %d %x %X\n", 1000, 11, 1400, -4294967290);
+	chars = printf("Hello, %d %d %x %X\n", 1000, 11, 1400, -4294967290);
+	printf("Printf chars: %d\n", chars);
 	return 0;
 }

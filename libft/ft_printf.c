@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:28:04 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 10:28:31 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/18 12:05:16 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	ft_printf(const char *fmt, ...)
 	int		n_chars;
 	va_list	args;
 
+	if (!fmt)
+		return (-1);
 	n_chars = 0;
 	va_start(args, fmt);
 	while (*fmt)

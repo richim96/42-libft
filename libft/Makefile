@@ -6,14 +6,14 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/05/13 16:16:28 by rmei             ###   ########.fr        #
+#    Updated: 2024/05/18 09:42:08 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = atoi bzero calloc haschar isalnum isalpha isascii isdigit isprint itoa \
-	lstnew lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap \
-	lstsize memchr memcmp memcpy memmove memset putchar_fd putendl_fd putnbr_fd \
+SRC = atoi bzero calloc haschar isalnum isalpha isascii isdigit isprint itoa lstnew \
+	lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap lstsize \
+	memchr memcmp memcpy memmove memset printf putchar_fd putendl_fd putnbr_fd \
 	putnbr_base_fd putstr_fd split substr strchr strdup striteri strjoin strlcat \
 	strlcpy strlen strmapi strncmp strnstr strrchr strtrim tolower toupper
 SRC := $(addsuffix .c, $(addprefix ft_, ${SRC}))

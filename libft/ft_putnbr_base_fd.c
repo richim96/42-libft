@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 12:08:16 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/17 12:38:20 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/18 10:27:05 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 static int	ft_is_base_valid(char *base)
@@ -38,30 +37,29 @@ static int	ft_is_base_valid(char *base)
 	return (1);
 }
 
-/* Writes integer 'n' to 'fd' in a certain base, returns the n_chars printed */
-int	ft_putnbr_base_fd(long n, int fd, char *base)
+/* Writes 'n' to 'fd' in a certain base, returns the n_chars printed */
+int	ft_putnbr_base_fd(long nbr, int fd, char *base)
 {
 	int				n_chars;
-	unsigned int	n_len;
-	unsigned long	u_n;
+	unsigned int	b_len;
+	unsigned long	n;
 
-	n_len = ft_strlen(base);
 	if (!ft_is_base_valid(base))
-		return (0);
-	else
 	{
-		n_chars = 0;
-		if (n < 0)
-		{
-			u_n = -n;
-			write(fd, "-", 1);
-			n_chars++;
-		}
-		else
-			u_n = n;
-		if (u_n / n_len)
-			n_chars += ft_putnbr_base_fd(u_n / n_len, fd, base);
-		write(fd, &base[u_n % n_len], 1);
-		return (++n_chars);
+		ft_putstr_fd("[BASE ERROR] Invalid base.", 2);
+		return (0);
 	}
+	n = nbr;
+	n_chars = 0;
+	b_len = ft_strlen(base);
+	if (nbr < 0 && ft_strncmp(base, "0123456789", b_len) == 0)
+	{
+		n = -nbr;
+		ft_putstr_fd("-", fd);
+		n_chars++;
+	}
+	if (n / b_len)
+		n_chars += ft_putnbr_base_fd((n / b_len), fd, base);
+	ft_putchar_fd(base[n % b_len], 1);
+	return (++n_chars);
 }

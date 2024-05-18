@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 12:08:16 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 10:27:05 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/18 10:35:57 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ int	ft_putnbr_base_fd(long nbr, int fd, char *base)
 	if (nbr < 0 && ft_strncmp(base, "0123456789", b_len) == 0)
 	{
 		n = -nbr;
-		ft_putstr_fd("-", fd);
-		n_chars++;
+		n_chars += ft_putchar_fd('-', fd);
 	}
 	if (n / b_len)
 		n_chars += ft_putnbr_base_fd((n / b_len), fd, base);

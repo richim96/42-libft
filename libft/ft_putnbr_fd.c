@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:40:33 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 10:28:12 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/18 10:35:21 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ int	ft_putnbr_fd(long n, int fd)
 	char			char_n;
 
 	n_chars = 0;
+	u_n = n;
 	if (n < 0)
 	{
 		u_n = -n;
-		ft_putchar_fd('-', fd);
-		n_chars++;
+		n_chars += ft_putchar_fd('-', fd);
 	}
-	u_n = n;
 	b_len = 10;
 	if (u_n / b_len)
 		n_chars += ft_putnbr_fd(u_n / b_len, fd);

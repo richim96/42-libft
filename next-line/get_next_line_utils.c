@@ -6,15 +6,17 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/21 17:36:54 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/22 10:51:34 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/* Reallocates a memory block of size 'size', xcess memory is not initialized */
 void	*ft_realloc(void *ptr, size_t size)
 {
 	int				i;
+	unsigned char	*ptr1;
 	unsigned char	*ptr2;
 
 	ptr2 = malloc(size);
@@ -27,9 +29,10 @@ void	*ft_realloc(void *ptr, size_t size)
 	if (!ptr)
 		return (ptr2);
 	i = 0;
-	while (((unsigned char *)ptr)[i])
+	ptr1 = (unsigned char *)ptr;
+	while (ptr1[i] && ptr2[i])
 	{
-		ptr2[i] = ((unsigned char *)ptr)[i];
+		ptr2[i] = ptr1[i];
 		i++;
 	}
 	ptr2[i] = '\0';
@@ -37,22 +40,7 @@ void	*ft_realloc(void *ptr, size_t size)
 	return (ptr2);
 }
 
-#include <stdio.h>
-int	main(void)
-{
-	char	*ptr = NULL; //malloc(3)
-	char	*ptr2;
-
-	/*ptr[0] = 'H';
-	ptr[1] = 'T';
-	ptr[2] = '\0';*/
-	ptr2 = ft_realloc(ptr, 14);
-	printf("%s\n", ptr2);
-	free(ptr2);
-	return (0);
-}
-
-/*
+/* Takes the current line from a file descriptor */
 char	*ft_makeline(int fd, char *buf, int pos, int end)
 {
 	char	*line;
@@ -81,4 +69,4 @@ char	*ft_makeline(int fd, char *buf, int pos, int end)
 			return (line);
 		}
 	}
-}*/
+}

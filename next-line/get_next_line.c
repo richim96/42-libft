@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/22 11:00:13 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/25 12:54:45 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,19 @@ char	*get_next_line(int fd)
 	return (ft_makeline(fd, buffer, buffer_pos, buffer_end));
 }
 
+/*
 #include <stdio.h>
 #include <fcntl.h>
 int	main(void)
 {
-	int	fd = open("./test.txt", O_RDWR);
-	printf("%d\n", fd);
+	int	fd = open("./test", O_RDONLY);
+	char *line = get_next_line(fd);
 
+	while (line)
+	{
+		printf("%s", line);
+		line = get_next_line(fd);
+	}
+	printf("%s\n", line);
 	return 0;
-}
+}*/

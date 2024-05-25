@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/22 10:56:33 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/25 12:54:57 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 1024
+// # define BUFFER_SIZE 1024
 
 char	*get_next_line(int fd);
 char	*ft_makeline(int fd, char *buf, int pos, int end);

@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/25 12:49:10 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/26 12:23:54 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,21 @@ char	*ft_makeline(int fd, char *buff, int pos, int end)
 		if (pos >= end)
 		{
 			end = read(fd, buff, BUFFER_SIZE);
-			pos = 0;
-			if (end <= pos)
+			if (end <= 0)
 				return (NULL);
 		}
-		while (pos < end)
+		while (pos < end && buff[pos] != '\n')
 		{
 			line = ft_realloc(line, pos + 2);
 			line[pos] = buff[pos];
 			line[++pos] = '\0';
 		}
-		if (buff[pos - 1] == '\n')
+		if (buff[pos] == '\n')
+		{
+			line = ft_realloc(line, pos + 1);
+			line[pos] = buff[pos];
+			line[++pos] = '\0';
 			return (line);
+		}
 	}
 }

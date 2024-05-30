@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/26 12:07:26 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/29 11:35:23 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 # include <string.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 4096
-
 char	*get_next_line(int fd);
-char	*ft_makeline(int fd, char *buf, int pos, int end);
 void	*ft_realloc(void *ptr, size_t size);
+void	ft_bzero(void *s, size_t n);
 
 #endif

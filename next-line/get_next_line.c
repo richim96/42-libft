@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/30 11:26:52 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/30 15:30:07 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,28 @@ char	*get_next_line(int fd)
 	line = NULL;
 	while (1)
 	{
+		/*ft_makebuffer(fd, buffer, &pos, &end);
+		if (end == 0)
+			return (line);
+		if (end < 0)
+		{
+			if (line)
+				free(line);
+			return (NULL);
+		}*/
 		if (pos >= end)
 		{
 			pos = 0;
 			end = read(fd, buffer, BUFFER_SIZE);
-			if (end <= pos)
+			if (end <= 0)
 			{
-				ft_bzero(buffer, sizeof(buffer));
+				ft_bzero(buffer, sizeof buffer);
+				if (end < 0)
+				{
+					if (line)
+						free(line);
+					return (NULL);
+				}
 				return (line);
 			}
 		}
@@ -40,13 +55,14 @@ char	*get_next_line(int fd)
 			line = ft_realloc(line, i + 2);
 			if (!line)
 				return (NULL);
-			line[i] = buffer[pos++];
-			line[++i] = '\0';
+			line[i++] = buffer[pos++];
+			line[i] = '\0';
 			if (buffer[pos - 1] == '\n')
 				return (line);
 		}
 	}
 }
+
 /*
 #include <stdio.h>
 #include <fcntl.h>

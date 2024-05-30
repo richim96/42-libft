@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/30 10:52:28 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/30 15:28:48 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_bzero(void *s, size_t n)
 void	*ft_realloc(void *ptr, size_t size)
 {
 	int				i;
-	unsigned char 	*u_ptr;
+	unsigned char	*u_ptr;
 	unsigned char	*ptr_new;
 
 	ptr_new = malloc(size);
@@ -44,4 +44,16 @@ void	*ft_realloc(void *ptr, size_t size)
 	}
 	free(ptr);
 	return (ptr_new);
+}
+
+/* Creates and returns the buffer to read */
+void	ft_makebuffer(int fd, char *buffer, int *pos, int *end)
+{
+	if (*pos >= *end)
+	{
+		*pos = 0;
+		*end = read(fd, buffer, BUFFER_SIZE);
+		if (*end <= 0)
+			ft_bzero(buffer, sizeof buffer);
+	}
 }

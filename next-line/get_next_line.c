@@ -6,76 +6,61 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/30 15:30:07 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/31 17:15:42 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* Reads a line from 'fd', tracking which lines have already been read */
-char	*get_next_line(int fd)
+/* Creates the buffer to read the current line */
+static char	*ft_makebuffer(int fd, t_buffer *pino, t_line *gnl)
 {
-	static char	buffer[BUFFER_SIZE];
-	static int	pos;
-	static int	end;
-	char		*line;
-	int			i;
-
-	i = 0;
-	line = NULL;
-	while (1)
+	pino->pos = 0;
+	pino->end = read(fd, pino->buffer, BUFFER_SIZE);
+	if (pino->end <= 0)
 	{
-		/*ft_makebuffer(fd, buffer, &pos, &end);
-		if (end == 0)
-			return (line);
-		if (end < 0)
+		ft_bzero(pino->buffer, sizeof pino->buffer);
+		if (pino->end < 0)
 		{
-			if (line)
-				free(line);
+			if (gnl->line)
+				free(gnl->line);
 			return (NULL);
-		}*/
-		if (pos >= end)
-		{
-			pos = 0;
-			end = read(fd, buffer, BUFFER_SIZE);
-			if (end <= 0)
-			{
-				ft_bzero(buffer, sizeof buffer);
-				if (end < 0)
-				{
-					if (line)
-						free(line);
-					return (NULL);
-				}
-				return (line);
-			}
 		}
-		while (pos < end)
-		{
-			line = ft_realloc(line, i + 2);
-			if (!line)
-				return (NULL);
-			line[i++] = buffer[pos++];
-			line[i] = '\0';
-			if (buffer[pos - 1] == '\n')
-				return (line);
-		}
+	}
+	return (gnl->line);
+}
+
+/* Reads the current line from the buffer */
+static void	ft_makeline(t_buffer *pino, t_line *gnl)
+{
+	while (pino->pos < pino->end)
+	{
+		gnl->line = ft_realloc(gnl->line, gnl->i + 2);
+		if (!gnl->line)
+			break ;
+		gnl->line[gnl->i++] = pino->buffer[pino->pos++];
+		gnl->line[gnl->i] = '\0';
+		if (pino->buffer[pino->pos - 1] == '\n')
+			break ;
 	}
 }
 
-/*
-#include <stdio.h>
-#include <fcntl.h>
-int	main(void)
+/* Reads a line from 'fd', tracking which lines have already been read */
+char	*get_next_line(int fd)
 {
-	int	fd = open("./test", O_RDONLY);
-	char *line = get_next_line(fd);
+	static t_buffer	pino;
+	t_line			gnl;
 
-	while (line)
+	gnl.i = 0;
+	gnl.line = NULL;
+	while (1)
 	{
-		printf("%s\n", line);
-		line = get_next_line(fd);
+		if (pino.pos >= pino.end)
+			gnl.line = ft_makebuffer(fd, &pino, &gnl);
+		if (pino.end <= 0)
+			return (gnl.line);
+		ft_makeline(&pino, &gnl);
+		if (pino.buffer[pino.pos - 1] == '\n')
+			return (gnl.line);
 	}
-	printf("%s", line);
-	return 0;
-}*/
+}

@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/30 15:28:48 by rmei             ###   ########.fr       */
+/*   Updated: 2024/05/31 16:38:23 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,8 @@ void	*ft_realloc(void *ptr, size_t size)
 		return (ptr_new);
 	i = 0;
 	u_ptr = (unsigned char *)ptr;
-	while (u_ptr[i])
-	{
-		ptr_new[i] = u_ptr[i];
-		i++;
-	}
+	while (*u_ptr)
+		ptr_new[i++] = *(u_ptr++);
 	free(ptr);
 	return (ptr_new);
-}
-
-/* Creates and returns the buffer to read */
-void	ft_makebuffer(int fd, char *buffer, int *pos, int *end)
-{
-	if (*pos >= *end)
-	{
-		*pos = 0;
-		*end = read(fd, buffer, BUFFER_SIZE);
-		if (*end <= 0)
-			ft_bzero(buffer, sizeof buffer);
-	}
 }

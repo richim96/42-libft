@@ -6,18 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/31 16:38:23 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/03 12:04:15 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-/* Erases data from a block of memory, setting it to 0 */
-void	ft_bzero(void *s, size_t n)
-{
-	while (n--)
-		*((unsigned char *)s++) = '\0';
-}
 
 /* Reallocates memory to 'size', excess memory is not initialized */
 void	*ft_realloc(void *ptr, size_t size)

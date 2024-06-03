@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/31 17:02:42 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/03 12:03:44 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ typedef struct s_line
 
 char	*get_next_line(int fd);
 void	*ft_realloc(void *ptr, size_t size);
-void	ft_bzero(void *s, size_t n);
 
 #endif

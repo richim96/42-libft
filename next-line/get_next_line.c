@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/04 19:23:55 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/06 15:39:07 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@
 #endif
 
 /* Creates the buffer to read the current line */
-static char	*ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
+static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 {
 	buffer->pos = 0;
 	free(buffer->buffer);
 	buffer->buffer = malloc(BUFFER_SIZE);
 	if (!buffer->buffer)
-		return (NULL);
+		return ;
 	buffer->end = read(fd, buffer->buffer, BUFFER_SIZE);
 	if (buffer->end <= 0)
 	{
 		free(buffer->buffer);
 		buffer->buffer = NULL;
-		if (buffer->end == 0 && gnl->line)
-			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
-		if (buffer->end < 0)
+		if (buffer->end == -1)
 		{
 			free(gnl->line);
-			return (NULL);
+			gnl->line = NULL;
+			return ;
 		}
+		if (gnl->line)
+			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
 	}
-	return (gnl->line);
 }
 
 /* Reads the current line from the buffer */
@@ -77,16 +77,20 @@ char	*get_next_line(int fd)
 	t_line			gnl;
 
 	gnl.i = 0;
-	gnl.size = 512;
+	gnl.size = 64;
 	gnl.line = NULL;
 	while (1)
 	{
 		if (buffer.pos >= buffer.end)
-			gnl.line = ft_makebuffer(fd, &buffer, &gnl);
+			ft_makebuffer(fd, &buffer, &gnl);
 		if (buffer.end <= 0)
 			return (gnl.line);
+		if (!buffer.buffer)
+			return (NULL);
 		ft_makeline(&buffer, &gnl);
-		if (!gnl.line || buffer.buffer[buffer.pos - 1] == '\n')
+		if (!gnl.line)
+			return (NULL);
+		if (buffer.buffer[buffer.pos - 1] == '\n')
 			return (gnl.line);
 	}
 }

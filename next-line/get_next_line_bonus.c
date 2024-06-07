@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/06 16:44:41 by rmei             ###   ########.fr       */
+/*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
+/*   Updated: 2024/06/07 11:46:06 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 4096
@@ -70,24 +70,29 @@ static void	ft_makeline(t_buffer *buffer, t_line *gnl)
 
 char	*get_next_line(int fd)
 {
-	static t_buffer	buffer;
-	t_line			gnl;
+	static t_listgnl	**lst;
+	t_listgnl			*node;
+	t_line				gnl;
 
+	node = ft_is_fd(lst, fd);
+	if (!node)
+		ft_lstgnl_add_back(lst, ft_lstgnl_new(fd));
 	gnl.i = 0;
 	gnl.size = 64;
 	gnl.line = NULL;
-	while (1)
+	while (lst)
 	{
-		if (buffer.pos >= buffer.end)
-			ft_makebuffer(fd, &buffer, &gnl);
-		if (buffer.end <= 0)
+		if (node->buffer.pos >= node->buffer.end)
+			ft_makebuffer(fd, &node->buffer, &gnl);
+		if (node->buffer.end <= 0)
 			return (gnl.line);
-		if (!buffer.buffer)
+		if (!node->buffer.buffer)
 			return (NULL);
-		ft_makeline(&buffer, &gnl);
+		ft_makeline(&node->buffer, &gnl);
 		if (!gnl.line)
 			return (NULL);
-		if (buffer.buffer[buffer.pos - 1] == '\n')
+		if (node->buffer.buffer[node->buffer.pos - 1] == '\n')
 			return (gnl.line);
 	}
+	return (NULL);
 }

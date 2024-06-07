@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 11:21:20 by rmei             ###   ########.fr       */
+/*   Created: 2024/06/07 10:35:38 by rmei              #+#    #+#             */
+/*   Updated: 2024/06/07 11:51:49 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -30,7 +30,17 @@ typedef struct s_line
 	int		i;
 }	t_line;
 
-char	*get_next_line(int fd);
-char	*ft_realloc(char *ptr, size_t size);
+typedef struct s_listgnl
+{
+	int					fd;
+	t_buffer			buffer;
+	struct s_listgnl	*next;
+}	t_listgnl;
+
+char		*get_next_line(int fd);
+char		*ft_realloc(char *ptr, size_t size);
+void		ft_lstgnl_add_back(t_listgnl **lst, t_listgnl *new);
+t_listgnl	*ft_lstgnl_new(int fd);
+t_listgnl	*ft_is_fd(t_listgnl **lst, int fd);
 
 #endif

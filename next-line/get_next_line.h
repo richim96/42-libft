@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:42 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 11:21:20 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 20:33:30 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_buffer
 {
-	char	*buffer;
-	int		pos;
-	int		end;
+	char		*buffer;
+	ssize_t		pos;
+	ssize_t		end;
 }	t_buffer;
 
 typedef struct s_line

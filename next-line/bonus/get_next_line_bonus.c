@@ -6,15 +6,15 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 15:36:32 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 17:56:24 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line_bonus.h"
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 4096
 #endif
+
+#include "get_next_line_bonus.h"
 
 static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 {

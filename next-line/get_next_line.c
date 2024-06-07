@@ -6,21 +6,22 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/06 16:44:41 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 20:34:36 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line.h"
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 4096
 #endif
 
+#include "get_next_line.h"
+
+#include <stdio.h>
 static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 {
 	buffer->pos = 0;
 	free(buffer->buffer);
-	buffer->buffer = malloc(BUFFER_SIZE);
+	buffer->buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer->buffer)
 		return ;
 	buffer->end = read(fd, buffer->buffer, BUFFER_SIZE);
@@ -78,12 +79,13 @@ char	*get_next_line(int fd)
 	gnl.line = NULL;
 	while (1)
 	{
+		//printf("BUFFER END PRE MANNAGGIA: %d\n", buffer.end);
 		if (buffer.pos >= buffer.end)
 			ft_makebuffer(fd, &buffer, &gnl);
-		if (buffer.end <= 0)
+		//printf(" * BUFFER END: %d\n", buffer.end);
+		if (!buffer.buffer || buffer.end <= 0)
 			return (gnl.line);
-		if (!buffer.buffer)
-			return (NULL);
+		//printf("BUFFER BUFFER: %s\n", buffer.buffer);
 		ft_makeline(&buffer, &gnl);
 		if (!gnl.line)
 			return (NULL);

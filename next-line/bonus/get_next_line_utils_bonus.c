@@ -6,42 +6,38 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:36:38 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 12:26:19 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 15:43:40 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-/* Reallocates memory to 'size', excess memory is not initialized */
-char	*ft_realloc(char *ptr, size_t size)
-{
-	size_t	i;
-	char	*ptr_new;
-
-	ptr_new = malloc(size);
-	if (!ptr_new)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	if (!ptr)
-		return (ptr_new);
-	i = 0;
-	while (ptr[i] && i < size - 1)
-	{
-		ptr_new[i] = ptr[i];
-		i++;
-	}
-	ptr_new[i] = '\0';
-	free(ptr);
-	return (ptr_new);
-}
-
-/* Creates a new node for a singly-linked gnl list */
-t_listgnl	*ft_lstgnl_new(int fd)
+/* Looks for an existing reference to fd, returns the node if found */
+static t_listgnl	*ft_node_fd(int fd, t_listgnl **lst)
 {
 	t_listgnl	*node;
 
+	if (lst)
+	{
+		node = *lst;
+		while (node->next)
+		{
+			if (node->fd == fd)
+				return (node);
+			node = node->next;
+		}
+	}
+	return (NULL);
+}
+
+/* Creates a new node for a singly-linked gnl list */
+t_listgnl	*ft_lstgnl_new(int fd, t_listgnl **lst)
+{
+	t_listgnl	*node;
+
+	node = ft_node_fd(fd, lst);
+	if (node)
+		return (node);
 	node = malloc(sizeof(t_listgnl));
 	if (!node)
 		return (NULL);
@@ -71,20 +67,27 @@ void	ft_lstgnl_add_back(t_listgnl **lst, t_listgnl *new)
 	}
 }
 
-/* Looks for an existing reference to fd, returns the node if found */
-t_listgnl	*ft_is_fd(t_listgnl **lst, int fd)
+/* Reallocates memory to 'size', excess memory is not initialized */
+char	*ft_realloc(char *ptr, size_t size)
 {
-	t_listgnl	*node;
+	size_t	i;
+	char	*ptr_new;
 
-	if (lst)
+	ptr_new = malloc(size);
+	if (!ptr_new)
 	{
-		node = *lst;
-		while (node->next)
-		{
-			if (node->fd == fd)
-				return (node);
-			node = node->next;
-		}
+		free(ptr);
+		return (NULL);
 	}
-	return (NULL);
+	if (!ptr)
+		return (ptr_new);
+	i = 0;
+	while (ptr[i] && i < size - 1)
+	{
+		ptr_new[i] = ptr[i];
+		i++;
+	}
+	ptr_new[i] = '\0';
+	free(ptr);
+	return (ptr_new);
 }

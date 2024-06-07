@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:38 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 12:26:43 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 15:30:13 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ char		*get_next_line(int fd);
 char		*ft_realloc(char *ptr, size_t size);
 void		ft_lstgnl_add_back(t_listgnl **lst, t_listgnl *new);
 t_listgnl	*ft_lstgnl_new(int fd);
-t_listgnl	*ft_is_fd(t_listgnl **lst, int fd);
 
 #endif

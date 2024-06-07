@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 12:31:43 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 15:36:32 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,16 @@ static void	ft_makeline(t_buffer *buffer, t_line *gnl)
 	}
 }
 
-#include <stdio.h>
 char	*get_next_line(int fd)
 {
 	static t_listgnl	**lst;
 	t_listgnl			*node;
 	t_line				gnl;
 
-	node = ft_is_fd(lst, fd);
+	node = ft_lstgnl_new(fd, lst);
 	if (!node)
-	{
-		node = ft_lstgnl_new(fd);
-		ft_lstgnl_add_back(lst, node);
-	}
+		return (NULL);
+	ft_lstgnl_add_back(lst, node);
 	gnl.i = 0;
 	gnl.size = 64;
 	gnl.line = NULL;

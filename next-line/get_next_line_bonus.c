@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 11:46:06 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 12:31:43 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	ft_makeline(t_buffer *buffer, t_line *gnl)
 	}
 }
 
+#include <stdio.h>
 char	*get_next_line(int fd)
 {
 	static t_listgnl	**lst;
@@ -76,11 +77,14 @@ char	*get_next_line(int fd)
 
 	node = ft_is_fd(lst, fd);
 	if (!node)
-		ft_lstgnl_add_back(lst, ft_lstgnl_new(fd));
+	{
+		node = ft_lstgnl_new(fd);
+		ft_lstgnl_add_back(lst, node);
+	}
 	gnl.i = 0;
 	gnl.size = 64;
 	gnl.line = NULL;
-	while (lst)
+	while (1)
 	{
 		if (node->buffer.pos >= node->buffer.end)
 			ft_makebuffer(fd, &node->buffer, &gnl);
@@ -94,5 +98,4 @@ char	*get_next_line(int fd)
 		if (node->buffer.buffer[node->buffer.pos - 1] == '\n')
 			return (gnl.line);
 	}
-	return (NULL);
 }

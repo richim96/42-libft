@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:36:38 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 11:47:34 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/07 12:26:19 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ void	ft_lstgnl_add_back(t_listgnl **lst, t_listgnl *new)
 {
 	t_listgnl	*node;
 
-	if (!*lst)
-		*lst = new;
+	if (!new)
+		return ;
+	if (!lst)
+		lst = &new;
 	else
 	{
 		node = *lst;
@@ -74,7 +76,7 @@ t_listgnl	*ft_is_fd(t_listgnl **lst, int fd)
 {
 	t_listgnl	*node;
 
-	if (*lst)
+	if (lst)
 	{
 		node = *lst;
 		while (node->next)

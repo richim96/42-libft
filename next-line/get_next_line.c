@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 20:34:36 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/10 12:27:39 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 #include "get_next_line.h"
 
-#include <stdio.h>
 static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 {
 	buffer->pos = 0;
@@ -49,21 +48,13 @@ static void	ft_makeline(t_buffer *buffer, t_line *gnl)
 			gnl->size *= 2;
 			gnl->line = ft_realloc(gnl->line, gnl->size);
 			if (!gnl->line)
-			{
-				free(buffer->buffer);
-				buffer->buffer = NULL;
 				break ;
-			}
 		}
 		gnl->line[gnl->i++] = buffer->buffer[buffer->pos];
 		gnl->line[gnl->i] = '\0';
 		if (buffer->buffer[buffer->pos++] == '\n')
 		{
 			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
-			if (!gnl->line)
-				free(buffer->buffer);
-			if (!gnl->line)
-				buffer->buffer = NULL;
 			break ;
 		}
 	}
@@ -79,16 +70,18 @@ char	*get_next_line(int fd)
 	gnl.line = NULL;
 	while (1)
 	{
-		//printf("BUFFER END PRE MANNAGGIA: %d\n", buffer.end);
 		if (buffer.pos >= buffer.end)
 			ft_makebuffer(fd, &buffer, &gnl);
-		//printf(" * BUFFER END: %d\n", buffer.end);
-		if (!buffer.buffer || buffer.end <= 0)
+		if (!buffer.buffer)
 			return (gnl.line);
-		//printf("BUFFER BUFFER: %s\n", buffer.buffer);
 		ft_makeline(&buffer, &gnl);
 		if (!gnl.line)
+		{
+			free(buffer.buffer);
+			buffer.buffer = NULL;
+			buffer.end = 0;
 			return (NULL);
+		}
 		if (buffer.buffer[buffer.pos - 1] == '\n')
 			return (gnl.line);
 	}

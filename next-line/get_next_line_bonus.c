@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/11 12:53:52 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/11 18:11:47 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,16 @@
 
 #include "get_next_line_bonus.h"
 
-static	t_listgnl	*ft_makenode(int fd, t_listgnl **lst)
-{
-	t_listgnl	*node;
-
-	node = ft_node_fd(fd, lst);
-	if (!node)
-	{
-		node = ft_lst_new(fd);
-		if (node)
-			ft_lst_add_back(lst, node);
-	}
-	return (node);
-}
-
-static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
+static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *line)
 {
 	buffer->pos = 0;
 	free(buffer->buffer);
 	buffer->buffer = malloc(BUFFER_SIZE);
 	if (!buffer->buffer)
 	{
-		free(gnl->line);
-		gnl->line = NULL;
+		buffer->end = 0;
+		free(line->line);
+		line->line = NULL;
 		return ;
 	}
 	buffer->end = read(fd, buffer->buffer, BUFFER_SIZE);
@@ -48,68 +35,61 @@ static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 		buffer->buffer = NULL;
 		if (buffer->end < 0)
 		{
-			free(gnl->line);
-			gnl->line = NULL;
+			free(line->line);
+			line->line = NULL;
 			return ;
 		}
-		if (gnl->line)
-			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
+		if (line->line)
+			line->line = ft_realloc(line->line, line->i + 1);
 	}
 }
 
-static void	ft_makeline(t_buffer *buffer, t_line *gnl)
+static void	ft_makeline(t_buffer *buffer, t_line *line)
 {
 	while (buffer->pos < buffer->end)
 	{
-		if (!gnl->line || gnl->i >= (int)gnl->size - 1)
+		if (!line->line || line->i >= (int)line->size - 1)
 		{
-			gnl->size *= 2;
-			gnl->line = ft_realloc(gnl->line, gnl->size);
-			if (!gnl->line)
+			line->size *= 2;
+			line->line = ft_realloc(line->line, line->size);
+			if (!line->line)
 				break ;
 		}
-		gnl->line[gnl->i++] = buffer->buffer[buffer->pos];
-		gnl->line[gnl->i] = '\0';
+		line->line[line->i++] = buffer->buffer[buffer->pos];
+		line->line[line->i] = '\0';
 		if (buffer->buffer[buffer->pos++] == '\n')
 		{
-			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
+			line->line = ft_realloc(line->line, line->i + 1);
 			break ;
 		}
 	}
 }
 
-#include <stdio.h>
 char	*get_next_line(int fd)
 {
-	static t_listgnl	**lst;
-	t_listgnl			*node;
-	t_line				gnl;
+	static t_buffer	fd_arr[1024];
+	t_buffer		*buffer;
+	t_line			line;
 
-	node = ft_makenode(fd, lst);
-	if (!node)
-		return (NULL);
-	gnl.i = 0;
-	gnl.size = 64;
-	gnl.line = NULL;
+	line.i = 0;
+	line.size = 64;
+	line.line = NULL;
+	buffer = &fd_arr[fd];
 	while (1)
 	{
-		if (node->buffer.pos >= node->buffer.end)
-			ft_makebuffer(fd, &node->buffer, &gnl);
-		//printf("\nPOOPY POOP");
-		if (!node->buffer.buffer)
+		if (buffer->pos >= buffer->end)
+			ft_makebuffer(fd, buffer, &line);
+		if (!buffer->buffer)
+			return (line.line);
+		ft_makeline(buffer, &line);
+		if (!line.line)
 		{
-			free(node);
-			return (gnl.line);
-		}
-		//printf("\n||| DIGGITY DIG");
-		ft_makeline(&node->buffer, &gnl);
-		if (!gnl.line)
-		{
-			free(node->buffer.buffer);
-			free(node);
+			free(buffer->buffer);
+			buffer->buffer = NULL;
+			buffer->end = 0;
 			return (NULL);
 		}
-		if (node->buffer.buffer[node->buffer.pos - 1] == '\n')
-			return (gnl.line);
+		if (buffer->buffer[buffer->pos - 1] == '\n')
+			return (line.line);
 	}
 }

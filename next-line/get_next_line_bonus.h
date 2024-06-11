@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:38 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/11 12:38:04 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/11 18:07:51 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,7 @@ typedef struct s_line
 	int		i;
 }	t_line;
 
-typedef struct s_listgnl
-{
-	int					fd;
-	t_buffer			buffer;
-	struct s_listgnl	*next;
-}	t_listgnl;
-
 char		*get_next_line(int fd);
-char		*ft_realloc(char *ptr, size_t size);
-void		ft_lst_add_back(t_listgnl **lst, t_listgnl *new);
-t_listgnl	*ft_lst_new(int fd);
-t_listgnl	*ft_node_fd(int fd, t_listgnl **lst);
+void		*ft_realloc(void *ptr, size_t size);
 
 #endif

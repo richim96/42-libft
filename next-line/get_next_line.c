@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/11 11:02:58 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/11 16:15:15 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "get_next_line.h"
 
-static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
+static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *line)
 {
 	buffer->pos = 0;
 	free(buffer->buffer);
@@ -24,8 +24,8 @@ static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 	if (!buffer->buffer)
 	{
 		buffer->end = 0;
-		free(gnl->line);
-		gnl->line = NULL;
+		free(line->line);
+		line->line = NULL;
 		return ;
 	}
 	buffer->end = read(fd, buffer->buffer, BUFFER_SIZE);
@@ -35,31 +35,31 @@ static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 		buffer->buffer = NULL;
 		if (buffer->end < 0)
 		{
-			free(gnl->line);
-			gnl->line = NULL;
+			free(line->line);
+			line->line = NULL;
 			return ;
 		}
-		if (gnl->line)
-			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
+		if (line->line)
+			line->line = ft_realloc(line->line, line->i + 1);
 	}
 }
 
-static void	ft_makeline(t_buffer *buffer, t_line *gnl)
+static void	ft_makeline(t_buffer *buffer, t_line *line)
 {
 	while (buffer->pos < buffer->end)
 	{
-		if (!gnl->line || gnl->i >= (int)gnl->size - 1)
+		if (!line->line || line->i >= (int)line->size - 1)
 		{
-			gnl->size *= 2;
-			gnl->line = ft_realloc(gnl->line, gnl->size);
-			if (!gnl->line)
+			line->size *= 2;
+			line->line = ft_realloc(line->line, line->size);
+			if (!line->line)
 				break ;
 		}
-		gnl->line[gnl->i++] = buffer->buffer[buffer->pos];
-		gnl->line[gnl->i] = '\0';
+		line->line[line->i++] = buffer->buffer[buffer->pos];
+		line->line[line->i] = '\0';
 		if (buffer->buffer[buffer->pos++] == '\n')
 		{
-			gnl->line = ft_realloc(gnl->line, gnl->i + 1);
+			line->line = ft_realloc(line->line, line->i + 1);
 			break ;
 		}
 	}
@@ -68,19 +68,19 @@ static void	ft_makeline(t_buffer *buffer, t_line *gnl)
 char	*get_next_line(int fd)
 {
 	static t_buffer	buffer;
-	t_line			gnl;
+	t_line			line;
 
-	gnl.i = 0;
-	gnl.size = 64;
-	gnl.line = NULL;
+	line.i = 0;
+	line.size = 64;
+	line.line = NULL;
 	while (1)
 	{
 		if (buffer.pos >= buffer.end)
-			ft_makebuffer(fd, &buffer, &gnl);
+			ft_makebuffer(fd, &buffer, &line);
 		if (!buffer.buffer)
-			return (gnl.line);
-		ft_makeline(&buffer, &gnl);
-		if (!gnl.line)
+			return (line.line);
+		ft_makeline(&buffer, &line);
+		if (!line.line)
 		{
 			free(buffer.buffer);
 			buffer.buffer = NULL;
@@ -88,6 +88,6 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		if (buffer.buffer[buffer.pos - 1] == '\n')
-			return (gnl.line);
+			return (line.line);
 	}
 }

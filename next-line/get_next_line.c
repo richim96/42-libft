@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/10 15:24:49 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/11 11:02:58 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 {
 	buffer->pos = 0;
 	free(buffer->buffer);
-	buffer->buffer = malloc(BUFFER_SIZE + 1);
+	buffer->buffer = malloc(BUFFER_SIZE);
 	if (!buffer->buffer)
 	{
 		buffer->end = 0;
@@ -35,7 +35,6 @@ static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *gnl)
 		buffer->buffer = NULL;
 		if (buffer->end < 0)
 		{
-			buffer->end = 0;
 			free(gnl->line);
 			gnl->line = NULL;
 			return ;

@@ -6,14 +6,14 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:36:38 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/07 15:43:40 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/11 12:41:29 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
 /* Looks for an existing reference to fd, returns the node if found */
-static t_listgnl	*ft_node_fd(int fd, t_listgnl **lst)
+t_listgnl	*ft_node_fd(int fd, t_listgnl **lst)
 {
 	t_listgnl	*node;
 
@@ -31,13 +31,10 @@ static t_listgnl	*ft_node_fd(int fd, t_listgnl **lst)
 }
 
 /* Creates a new node for a singly-linked gnl list */
-t_listgnl	*ft_lstgnl_new(int fd, t_listgnl **lst)
+t_listgnl	*ft_lst_new(int fd)
 {
 	t_listgnl	*node;
 
-	node = ft_node_fd(fd, lst);
-	if (node)
-		return (node);
 	node = malloc(sizeof(t_listgnl));
 	if (!node)
 		return (NULL);
@@ -50,7 +47,7 @@ t_listgnl	*ft_lstgnl_new(int fd, t_listgnl **lst)
 }
 
 /* Adds a new to node to the end of the singly-linked gnl list */
-void	ft_lstgnl_add_back(t_listgnl **lst, t_listgnl *new)
+void	ft_lst_add_back(t_listgnl **lst, t_listgnl *new)
 {
 	t_listgnl	*node;
 

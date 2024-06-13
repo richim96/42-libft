@@ -6,13 +6,9 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/11 18:11:47 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/13 16:52:32 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4096
-#endif
 
 #include "get_next_line_bonus.h"
 
@@ -50,16 +46,24 @@ static void	ft_makeline(t_buffer *buffer, t_line *line)
 	{
 		if (!line->line || line->i >= (int)line->size - 1)
 		{
-			line->size *= 2;
+			line->size *= 4;
 			line->line = ft_realloc(line->line, line->size);
 			if (!line->line)
+			{
+				free(buffer->buffer);
+				buffer->buffer = NULL;
 				break ;
+			}
 		}
 		line->line[line->i++] = buffer->buffer[buffer->pos];
 		line->line[line->i] = '\0';
 		if (buffer->buffer[buffer->pos++] == '\n')
 		{
 			line->line = ft_realloc(line->line, line->i + 1);
+			if (!line->line)
+				free(buffer->buffer);
+			if (!line->line)
+				buffer->buffer = NULL;
 			break ;
 		}
 	}
@@ -71,8 +75,10 @@ char	*get_next_line(int fd)
 	t_buffer		*buffer;
 	t_line			line;
 
+	if (fd < 0 || fd > 1024)
+		return (NULL);
 	line.i = 0;
-	line.size = 64;
+	line.size = 128;
 	line.line = NULL;
 	buffer = &fd_arr[fd];
 	while (1)
@@ -84,8 +90,6 @@ char	*get_next_line(int fd)
 		ft_makeline(buffer, &line);
 		if (!line.line)
 		{
-			free(buffer->buffer);
-			buffer->buffer = NULL;
 			buffer->end = 0;
 			return (NULL);
 		}

@@ -6,13 +6,9 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:50:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/11 16:15:15 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/13 15:48:15 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4096
-#endif
 
 #include "get_next_line.h"
 

@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:45:52 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 10:27:17 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/14 15:06:48 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,39 @@
 
 # include <stdarg.h>
 # include <string.h>
+# include <stdlib.h>
 
+/* Macros */ 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+# ifndef MAX_PFD
+#  define MAX_PFD 1024
+# endif
+
+/* Structures */
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_buffer
+{
+	char		*buffer;
+	ssize_t		pos;
+	ssize_t		end;
+}	t_buffer;
+
+typedef struct s_line
+{
+	char	*line;
+	size_t	size;
+	int		i;
+}	t_line;
+
+/* Libc functions */
 int		ft_atoi(const char *nptr);
 int		ft_haschar(char *s, char c);
 int		ft_isalpha(int c);
@@ -51,17 +83,13 @@ void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
+void	*ft_realloc(void *ptr, size_t size);
 void	*ft_striteri(char *s, void (*f)(unsigned int, char*));
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
+/* Linked list functions */
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);

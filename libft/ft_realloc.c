@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 10:36:38 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/11 18:10:50 by rmei             ###   ########.fr       */
+/*   Created: 2024/06/14 14:57:37 by rmei              #+#    #+#             */
+/*   Updated: 2024/06/14 15:07:17 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "libft.h"
 
 /* Reallocates memory to 'size', excess memory is not initialized */
 void	*ft_realloc(void *ptr, size_t size)

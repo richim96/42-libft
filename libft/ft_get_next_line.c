@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/13 16:52:32 by rmei             ###   ########.fr       */
+/*   Updated: 2024/06/14 15:07:02 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include <unistd.h>
+#include "libft.h"
 
 static void	ft_makebuffer(int fd, t_buffer *buffer, t_line *line)
 {
@@ -71,11 +72,11 @@ static void	ft_makeline(t_buffer *buffer, t_line *line)
 
 char	*get_next_line(int fd)
 {
-	static t_buffer	fd_arr[1024];
+	static t_buffer	fd_arr[MAX_PFD];
 	t_buffer		*buffer;
 	t_line			line;
 
-	if (fd < 0 || fd > 1024)
+	if (fd < 0 || fd > MAX_PFD)
 		return (NULL);
 	line.i = 0;
 	line.size = 128;

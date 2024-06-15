@@ -1,1 +1,3 @@
-This repository contains some projects - either completed or in progress, - for the core curriculum of 42 Berlin.
+Projects for the core curriculum of 42 Berlin.
+
+- Libft: collection of foundational library functions re-implemented from scratch.

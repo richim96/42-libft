@@ -6,38 +6,37 @@
 #    By: rmei <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 20:57:11 by rmei              #+#    #+#              #
-#    Updated: 2024/06/28 19:27:03 by rmei             ###   ########.fr        #
+#    Updated: 2024/07/01 12:39:41 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = wireframe.c
+SRC = wireframe.c utils.c
 OBJS = $(SRC:%.c=%.o)
 NAME = fdf
 
-CPPFLAGS = -I./libft -I./minilibx
+CPPFLAGS = -I./libft -I/usr/local/include
 CFLAGS = -Wall -Werror -Wextra 
-LDFLAGS = -L./libft -lft -L./minilibx -lmlx -lm -lX11 -lXext
+LDFLAGS = -lm -lX11 -lXext -L./libft -lft -L/usr/local/lib -lmlx
 
 #### -- RULES -- ####
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -sC libft
-	make -sC minilibx
-	cc $(OBJS) $(LDFLAGS) -o $(NAME)
+	cc $^ $(LDFLAGS) -o $@
 
 %.o: %.c
 	cc $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -sC libft
-	make clean -sC minilibx
 	rm -f $(OBJS)
 
-fclean: clean
+fclean: 
 	make fclean -sC libft
-	make fclean -sC minilibx
-	rm -f $(NAME)
+	rm -f $(OBJS) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

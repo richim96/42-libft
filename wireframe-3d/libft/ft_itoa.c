@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:44:14 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/03 15:08:06 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:52:51 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 /* Returns the length of a given number */
 static int	ft_nlen(unsigned int n)

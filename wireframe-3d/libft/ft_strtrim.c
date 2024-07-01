@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:40:01 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/10 11:52:40 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:56:09 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 /* Shifts the pointer to string 's' so the remove the 'set' characters from the

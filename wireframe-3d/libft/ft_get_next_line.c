@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/14 15:07:02 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 15:00:52 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 static void	ft_makebuffer(int fd, t_buffer *s_buffer, t_line *line)
@@ -70,7 +69,7 @@ static void	ft_makeline(t_buffer *s_buffer, t_line *line)
 	}
 }
 
-char	*get_next_line(int fd)
+char	*ft_get_next_line(int fd)
 {
 	static t_buffer	fd_arr[MAX_PFD];
 	t_buffer		*s_buffer;

@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:42:44 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 11:34:31 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:56:15 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 /* Creates a substring from a given string, copying from to start up to len.

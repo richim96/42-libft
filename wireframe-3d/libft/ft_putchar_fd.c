@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:13:57 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 09:45:56 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:34 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 /* Outputs the character 'c' to the file descriptor 'fd' */
 int	ft_putchar_fd(char c, int fd)

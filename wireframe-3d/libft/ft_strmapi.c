@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:49:23 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:21 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:55:44 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 /* Applies 'f' to each char of 's'. 'f' takes the index and the char as args.

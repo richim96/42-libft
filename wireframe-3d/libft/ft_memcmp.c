@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:14:43 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 18:33:18 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:53:45 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Compares the first n bytes (as unsigned char) of two memory areas s1 and s2.
  * Returns the difference of the comparison as an int. */

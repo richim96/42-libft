@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/06/25 20:45:22 by rmei             ###   ########.fr        #
+#    Updated: 2024/07/01 15:07:37 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,16 @@ CFLAGS = -Wall -Wextra -Werror
 #### -- RULES -- ####
 all: ${NAME}
 
-# create archive
 ${NAME}: ${OBJS}
-	 ar -rcs $@ $^
+	@ar -rcs $@ $^
 
 %.o: %.c
-	cc ${CPPFLAGS} ${CFLAGS} -c -o $@ $<
+	@cc ${CPPFLAGS} ${CFLAGS} -c -o $@ $<
 
 clean:
-	rm -f ${OBJS}
+	@rm -f ${OBJS}
 
 fclean: clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re: fclean all

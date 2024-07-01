@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:31:58 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 09:44:57 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:52 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 /* Outputs the string 's' to the file descriptor 'fd' */

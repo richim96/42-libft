@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:12:41 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/29 20:23:19 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 17:14:07 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Checks is a character is numeric (0 to 9) */
+/* Checks if a character is numeric (0 to 9) */
 int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');

@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:58:17 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 16:57:23 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:55:21 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 /* Joins strings s1 and s2 into a new string and returns it, or NULL on fail */

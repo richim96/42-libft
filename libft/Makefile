@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/06/14 15:05:39 by rmei             ###   ########.fr        #
+#    Updated: 2024/07/01 14:58:35 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,19 +29,18 @@ CFLAGS = -Wall -Wextra -Werror
 #### -- RULES -- ####
 all: ${NAME}
 
-# create archive
 ${NAME}: ${OBJS}
-	 ar -rcs $@ $^
+	ar -rcs $@ $^
 
 %.o: %.c
 	cc ${CPPFLAGS} ${CFLAGS} -c -o $@ $<
 
-# remove all object files
 clean:
 	rm -f ${OBJS}
 
-# remove all object files and the archive
 fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
+
+.PHONY: all clean fclean re

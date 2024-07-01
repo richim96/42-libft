@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:28:18 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/25 15:41:16 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:55:09 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Returns a pointer to the first occurence of c in s, or NULL. If c is '\0',
  * it returns a pointer to the null terminator. */

@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:38:34 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/08 11:14:04 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:24 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Fills the first n bytes of the memory area pointed to by s with the constant
  * byte c. Returns a pointer to the memory area s. */

@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:07:41 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 16:38:07 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:12 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Copies n bytes from memory area src to memory area dest. Memory can overlap.
  * Returns a pointer to dest. */

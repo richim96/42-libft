@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:27:22 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 17:21:34 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:55:52 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Compares up to n bytes of s1 and s2 using unsigned char: this allows handling
  * non-ASCII values. Returns the difference as an int. */

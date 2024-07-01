@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:45:52 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/26 12:33:40 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:51:32 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 /* Macros */ 
 # ifndef BUFFER_SIZE
@@ -32,6 +33,20 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_buffer
+{
+	char		*buffer;
+	ssize_t		pos;
+	ssize_t		end;
+}	t_buffer;
+
+typedef struct s_line
+{
+	char	*line;
+	size_t	size;
+	int		i;
+}	t_line;
 
 /* Libc functions */
 int		ft_atoi(const char *nptr);
@@ -75,7 +90,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 
-/* Singly-linked list functions */
+/* Linked list functions */
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);

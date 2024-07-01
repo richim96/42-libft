@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:34:20 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 18:31:53 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:53:34 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Looks for the first instance of a byte c in the first n bytes of the memory
  * area pointed by s. Returns a pointer to the matching byte or NULL. */

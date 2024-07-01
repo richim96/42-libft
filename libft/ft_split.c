@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:20 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/03 16:19:40 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:59 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 /* Counts how many strings will result from the split of s by the delimeter c */

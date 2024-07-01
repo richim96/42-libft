@@ -6,42 +6,36 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/06/26 12:33:27 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:52:17 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-/* Private structures */
-typedef struct s_buffer
-{
-	char		buffer[BUFFER_SIZE + 1];
-	ssize_t		pos;
-	ssize_t		end;
-}	t_buffer;
-
-typedef struct s_line
-{
-	char	*line;
-	size_t	size;
-	int		i;
-}	t_line;
-
-/* Private functions */
 static void	ft_makebuffer(int fd, t_buffer *s_buffer, t_line *line)
 {
 	s_buffer->pos = 0;
+	free(s_buffer->buffer);
+	s_buffer->buffer = malloc(BUFFER_SIZE);
+	if (!s_buffer->buffer)
+	{
+		s_buffer->end = 0;
+		free(line->line);
+		line->line = NULL;
+		return ;
+	}
 	s_buffer->end = read(fd, s_buffer->buffer, BUFFER_SIZE);
-	s_buffer->buffer[BUFFER_SIZE] = '\0';
 	if (s_buffer->end <= 0)
 	{
+		free(s_buffer->buffer);
+		s_buffer->buffer = NULL;
 		if (s_buffer->end < 0)
 		{
 			free(line->line);
 			line->line = NULL;
+			return ;
 		}
-		else if (line->line)
+		if (line->line)
 			line->line = ft_realloc(line->line, line->i + 1);
 	}
 }
@@ -56,7 +50,8 @@ static void	ft_makeline(t_buffer *s_buffer, t_line *line)
 			line->line = ft_realloc(line->line, line->size);
 			if (!line->line)
 			{
-				ft_bzero(s_buffer->buffer, BUFFER_SIZE);
+				free(s_buffer->buffer);
+				s_buffer->buffer = NULL;
 				break ;
 			}
 		}
@@ -66,14 +61,15 @@ static void	ft_makeline(t_buffer *s_buffer, t_line *line)
 		{
 			line->line = ft_realloc(line->line, line->i + 1);
 			if (!line->line)
-				ft_bzero(s_buffer->buffer, BUFFER_SIZE);
+				free(s_buffer->buffer);
+			if (!line->line)
+				s_buffer->buffer = NULL;
 			break ;
 		}
 	}
 }
 
-/* CORE FUNCTION */
-char	*ft_get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static t_buffer	fd_arr[MAX_PFD];
 	t_buffer		*s_buffer;
@@ -89,7 +85,7 @@ char	*ft_get_next_line(int fd)
 	{
 		if (s_buffer->pos >= s_buffer->end)
 			ft_makebuffer(fd, s_buffer, &line);
-		if (s_buffer->end <= 0)
+		if (!s_buffer->buffer)
 			return (line.line);
 		ft_makeline(s_buffer, &line);
 		if (!line.line)

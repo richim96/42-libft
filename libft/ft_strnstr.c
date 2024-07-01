@@ -6,11 +6,11 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:18:59 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/26 11:44:45 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:56:01 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 /* Locates the first occurrence of little within big, where only len characters
  * are searched. If '\0' is ecountered, it quits the search. Returns big in case

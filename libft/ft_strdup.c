@@ -6,11 +6,10 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:16:06 by rmei              #+#    #+#             */
-/*   Updated: 2024/04/30 15:48:57 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 14:55:14 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 /* Duplicates string s and returns a pointer to the new string (NULL on fail) */

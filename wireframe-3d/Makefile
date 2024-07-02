@@ -6,12 +6,12 @@
 #    By: rmei <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 20:57:11 by rmei              #+#    #+#              #
-#    Updated: 2024/07/01 12:39:41 by rmei             ###   ########.fr        #
+#    Updated: 2024/07/02 14:15:18 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = wireframe.c utils.c
+SRC = main.c wireframe.c utils.c
 OBJS = $(SRC:%.c=%.o)
 NAME = fdf
 

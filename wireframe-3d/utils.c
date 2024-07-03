@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:32:45 by rmei              #+#    #+#             */
-/*   Updated: 2024/07/01 17:31:18 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/03 17:02:28 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ int	ft_isnumstr(char *s)
 		s++;
 	}
 	return (1);
+}
+
+/* Convert 0-255 int values into an appropriate RBG int using bitshifting */
+int	f_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

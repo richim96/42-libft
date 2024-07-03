@@ -6,7 +6,7 @@
 #    By: rmei <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 20:57:11 by rmei              #+#    #+#              #
-#    Updated: 2024/07/03 10:39:16 by rmei             ###   ########.fr        #
+#    Updated: 2024/07/03 10:39:42 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,15 @@ SRC = main.c wireframe.c utils.c
 OBJS = $(SRC:%.c=%.o)
 NAME = fdf
 
-CPPFLAGS = -I./libft -I./minilibx/
+CPPFLAGS = -I./libft -I/usr/local/include
 CFLAGS = -Wall -Werror -Wextra 
-LDFLAGS = -lm -L./libft -lft -L./minilibx/ -lmlx -framework OpenGL -framework AppKit
+LDFLAGS = -lm -lX11 -lXext -L./libft -lft -L/usr/local/lib -lmlx
 
 #### -- RULES -- ####
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -sC libft
-	make -sC minilibx
 	cc $^ $(LDFLAGS) -o $@
 
 %.o: %.c
@@ -32,12 +31,10 @@ $(NAME): $(OBJS)
 
 clean:
 	make clean -sC libft
-	make clean -sC minilibx
 	rm -f $(OBJS)
 
 fclean: 
 	make fclean -sC libft
-	make fclean -sC minilibx
 	rm -r $(OBJS) $(NAME)
 
 re: fclean all

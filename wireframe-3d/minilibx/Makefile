@@ -9,13 +9,13 @@ CFLAGS+=-O2
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar -r $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar -r $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OBJS)
-	rm -f mlx_app
+	@rm -f $(OBJS)
+	@rm -f mlx_app
 fclean: clean
-	rm -r $(NAME)
+	@rm -r $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:24:40 by rmei              #+#    #+#             */
-/*   Updated: 2024/07/02 16:38:54 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/03 17:02:51 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_img
 
 /* FUNCTIONS  */
 int		ft_isnumstr(char *s);
-void	ft_map_draw(char *map);
+int		ft_trgb(int t, int r, int g, int b);
+void	ft_map_show(char *map);
 
 #endif

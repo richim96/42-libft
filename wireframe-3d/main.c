@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:27:12 by rmei              #+#    #+#             */
-/*   Updated: 2024/07/02 14:21:45 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/03 16:44:34 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int	main(int argc, char **argv)
 		write(2, "[ERROR] : Invalid map formatting\n", 33);
 		return (1);
 	}
-	ft_map_draw(map);
+	ft_map_show(map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/07/01 14:58:35 by rmei             ###   ########.fr        #
+#    Updated: 2024/08/07 13:17:38 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,9 @@ SRC = atoi bzero calloc get_next_line haschar isalnum isalpha isascii isdigit \
 	putnbr_fd putnbr_base_fd putstr_fd realloc split substr strchr strdup striteri \
 	strjoin strlcat strlcpy strlen strmapi strncmp strnstr strrchr strtrim tolower \
 	toupper
-SRC := $(addsuffix .c, $(addprefix ft_, ${SRC}))
+SRC := $(addsuffix .c, $(addprefix src/ft_, ${SRC}))
 
 OBJS = ${SRC:%.c=%.o}
-
 NAME = libft.a
 
 CPPFLAGS = -I.

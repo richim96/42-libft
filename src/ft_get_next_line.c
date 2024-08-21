@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:35:54 by rmei              #+#    #+#             */
-/*   Updated: 2024/07/01 15:05:59 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/01 15:00:52 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_get_next_line(int fd)
 	if (fd < 0 || fd > MAX_PFD)
 		return (NULL);
 	line.i = 0;
-	line.size = 128;
+	line.size = LINE_SIZE;
 	line.line = NULL;
 	s_buffer = &fd_arr[fd];
 	while (1)

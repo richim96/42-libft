@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+         #
+#    By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/08/07 13:17:38 by rmei             ###   ########.fr        #
+#    Updated: 2024/08/21 16:02:04 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
-SRC = atoi bzero calloc get_next_line haschar isalnum isalpha isascii isdigit \
+SRC = atoi bzero calloc error get_next_line haschar isalnum isalpha isascii isdigit \
 	isprint itoa lstnew lstadd_back lstadd_front lstclear lstdelone lstiter lstlast \
 	lstmap lstsize memchr memcmp memcpy memmove memset printf putchar_fd putendl_fd \
 	putnbr_fd putnbr_base_fd putstr_fd realloc split substr strchr strdup striteri \
@@ -20,6 +20,7 @@ SRC = atoi bzero calloc get_next_line haschar isalnum isalpha isascii isdigit \
 SRC := $(addsuffix .c, $(addprefix src/ft_, ${SRC}))
 
 OBJS = ${SRC:%.c=%.o}
+
 NAME = libft.a
 
 CPPFLAGS = -I.
@@ -29,17 +30,15 @@ CFLAGS = -Wall -Wextra -Werror
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	ar -rcs $@ $^
+	@ar -rcs $@ $^
 
 %.o: %.c
-	cc ${CPPFLAGS} ${CFLAGS} -c -o $@ $<
+	@cc ${CPPFLAGS} ${CFLAGS} -c $< -o $@
 
 clean:
-	rm -f ${OBJS}
+	@rm -f ${OBJS}
 
 fclean: clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re: fclean all
-
-.PHONY: all clean fclean re

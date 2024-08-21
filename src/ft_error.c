@@ -1,17 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
+/*   By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:12:41 by rmei              #+#    #+#             */
-/*   Updated: 2024/07/01 17:13:44 by rmei             ###   ########.fr       */
+/*   Created: 2024/08/21 16:01:23 by rmei              #+#    #+#             */
+/*   Updated: 2024/08/21 16:01:37 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Checks if a character is numeric (0 to 9) */
-int	ft_isdigit(int c)
+#include "libft.h"
+
+/* Raise an error and quit the program. */
+void	ft_error(char *msg)
 {
-	return (c >= '0' && c <= '9');
+	char	*error;
+
+	error = ft_strjoin("[ERROR] - ", msg);
+	ft_putstr_fd(error, 2);
+	free(error);
+	exit(1);
 }

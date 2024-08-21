@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:35:48 by rmei              #+#    #+#             */
-/*   Updated: 2024/07/01 14:53:14 by rmei             ###   ########.fr       */
+/*   Updated: 2024/07/17 19:00:25 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	lst2 = NULL;
 	while (lst)
 	{
-		content = (*f)(lst->content);
+		content = f(lst->content);
 		node = ft_lstnew(content);
 		if (!node)
 		{
-			if (content)
-				free(content);
 			ft_lstclear(&lst2, del);
 			break ;
 		}
-		ft_lstadd_back(&lst2, node);
+		ft_lstadd_back(lst2, node);
 		lst = lst->next;
 	}
 	return (lst2);

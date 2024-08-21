@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
+/*   By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:28:04 by rmei              #+#    #+#             */
-/*   Updated: 2024/05/18 12:05:16 by rmei             ###   ########.fr       */
+/*   Updated: 2024/08/21 16:04:41 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	ft_print_arg(const char *fmt, va_list args)
 	return (ft_putchar_fd(*fmt, 1));
 }
 
-/* Manages printing 'cspdiuxX%' specifiers. Doesn't handle buffer size.
+/* Manage printing 'cspdiuxX%' specifiers. Doesn't handle buffer size.
  * Returns the number of chars printed. */
 int	ft_printf(const char *fmt, ...)
 {

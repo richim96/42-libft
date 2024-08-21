@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmei <rmei@student.42berlin.de>            +#+  +:+       +#+        */
+/*   By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:45:52 by rmei              #+#    #+#             */
-/*   Updated: 2024/08/09 12:15:27 by rmei             ###   ########.fr       */
+/*   Updated: 2024/08/21 16:06:41 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@
 # include <unistd.h>
 
 /* Macros */ 
+# define MAX_PFD 1024
+# define LINE_SIZE 128
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
-# endif
-
-# ifndef MAX_PFD
-#  define MAX_PFD 1024
 # endif
 
 /* Structures */
@@ -56,6 +55,8 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_isupper(int c);
+int		ft_islower(int c);
 int		ft_printf(const char *fmt, ...);
 int		ft_putchar_fd(char c, int fd);
 int		ft_putendl_fd(char *s, int fd);
@@ -77,8 +78,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
-void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_error(char *msg);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
@@ -91,11 +93,11 @@ size_t	ft_strlen(const char *s);
 
 /* Linked list functions */
 int		ft_lstsize(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstdelone(t_list *node, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstadd_back(t_list *head, t_list *new_node);
+t_list	*ft_lstadd_front(t_list *head, t_list *new_node);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void*));
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);

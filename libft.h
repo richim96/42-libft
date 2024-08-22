@@ -6,7 +6,7 @@
 /*   By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:45:52 by rmei              #+#    #+#             */
-/*   Updated: 2024/08/21 16:11:54 by rmei             ###   ########.fr       */
+/*   Updated: 2024/08/22 15:41:10 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
+
+# define TRUE 1
+# define FALSE 0
 
 /* Structures */
 typedef struct s_list
@@ -47,7 +50,8 @@ typedef struct s_line
 	int		i;
 }	t_line;
 
-/* Libc functions */
+/* Lib functions */
+
 int		ft_atoi(const char *nptr);
 int		ft_haschar(char *s, char c);
 int		ft_isalpha(int c);
@@ -85,11 +89,13 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_realloc(void *ptr, size_t size);
 void	*ft_striteri(char *s, void (*f)(unsigned int, char*));
+size_t	ft_numlen(long long n);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 
 /* Linked list functions */
+
 int		ft_lstsize(t_list *lst);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *node, void (*del)(void *));

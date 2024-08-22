@@ -6,17 +6,17 @@
 #    By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/23 12:10:35 by rmei              #+#    #+#              #
-#    Updated: 2024/08/21 16:02:04 by rmei             ###   ########.fr        #
+#    Updated: 2024/08/21 18:39:44 by rmei             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #### -- VARIABLES -- ####
 SRC = atoi bzero calloc error get_next_line haschar isalnum isalpha isascii isdigit \
 	isprint itoa lstnew lstadd_back lstadd_front lstclear lstdelone lstiter lstlast \
-	lstmap lstsize memchr memcmp memcpy memmove memset printf putchar_fd putendl_fd \
-	putnbr_fd putnbr_base_fd putstr_fd realloc split substr strchr strdup striteri \
-	strjoin strlcat strlcpy strlen strmapi strncmp strnstr strrchr strtrim tolower \
-	toupper
+	lstmap lstsize memchr memcmp memcpy memmove memset numlen printf putchar_fd \
+	putendl_fd putnbr_fd putnbr_base_fd putstr_fd realloc split substr strchr strdup \
+	striteri strjoin strlcat strlcpy strlen strmapi strncmp strnstr strrchr strtrim \
+	tolower toupper
 SRC := $(addsuffix .c, $(addprefix src/ft_, ${SRC}))
 
 OBJS = ${SRC:%.c=%.o}

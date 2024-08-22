@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmei <rmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:01:23 by rmei              #+#    #+#             */
-/*   Updated: 2024/08/22 15:42:32 by rmei             ###   ########.fr       */
+/*   Created: 2024/08/21 18:38:09 by rmei              #+#    #+#             */
+/*   Updated: 2024/08/22 15:43:09 by rmei             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Raise an error and quit the program. */
-void	ft_error(char *msg)
+/* Count the lenght of a number. */
+size_t	ft_numlen(long long n)
 {
-	char	*error;
+	unsigned long long	un;
+	size_t				len;
 
-	error = ft_strjoin("[ERROR] - ", msg);
-	ft_putstr_fd(error, 2);
-	free(error);
-	exit(1);
+	un = n;
+	len = 0;
+	if (n <= 0)
+	{
+		un = -un;
+		len++;
+	}
+	while (un > 0)
+	{
+		un /= 10;
+		len++;
+	}
+	return (len);
 }

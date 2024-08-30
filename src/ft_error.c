@@ -18,7 +18,7 @@ void	ft_error(char *msg)
 	char	*error;
 
 	error = ft_strjoin("[ERROR] - ", msg);
-	ft_putstr_fd(error, 2);
+	ft_putendl_fd(error, 2);
 	free(error);
 	exit(1);
 }
